@@ -24,9 +24,9 @@ function g
         case st
             git status
         case ps
-            git push
+            git push $argv[2..-1]
         case cm
-            git commit
+            git commit $argv[2..-1]
         case a
             git add .
     end
