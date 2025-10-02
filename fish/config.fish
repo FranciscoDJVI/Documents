@@ -23,9 +23,9 @@ function g
     switch "$argv[1]"
         case st
             git status
-        case ps
+        case ps -u
             git push $argv[2..-1]
-        case cm
+        case cm -m
             git commit $argv[2..-1]
         case a
             git add .
