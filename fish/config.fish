@@ -15,11 +15,22 @@ alias ll "ls -l"
 alias lla "ll -A"
 alias g git
 alias c claude
+alias lz lazygit
+alias sdu "sudo dnf update"
 command -qv nvim && alias vim nvim
-#function l
-#command eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions $argv
-#end
 
+function g
+    switch "$argv[1]"
+        case st
+            git status
+        case ps
+            git push
+        case cm
+            git commit
+        case a
+            git add .
+    end
+end
 set -gx EDITOR nvim
 
 set -gx PATH bin $PATH
@@ -179,8 +190,8 @@ function fzf_key_bindings
         set -l prefix $commandline[3]
 
         set -lx FZF_DEFAULT_OPTS (__fzf_defaults \
-      "--reverse --walker=file,dir,follow,hidden --scheme=path" \
-      "$FZF_CTRL_T_OPTS --multi --print0")
+"--reverse --walker=file,dir,follow,hidden --scheme=path" \
+"$FZF_CTRL_T_OPTS --multi --print0")
 
         set -lx FZF_DEFAULT_COMMAND "$FZF_CTRL_T_COMMAND"
         set -lx FZF_DEFAULT_OPTS_FILE
@@ -198,10 +209,10 @@ function fzf_key_bindings
         set -l -- fzf_query (string escape -- $command_line[$current_line])
 
         set -lx FZF_DEFAULT_OPTS (__fzf_defaults '' \
-      '--nth=2..,.. --scheme=history --multi --wrap-sign="\t↳ "' \
-      '--bind=\'shift-delete:execute-silent(eval history delete --exact --case-sensitive -- (string escape -n -- {+} | string replace -r -a "^\d*\\\\\\t|(?<=\\\\\\n)\\\\\\t" ""))+reload(eval $FZF_DEFAULT_COMMAND)\'' \
-      "--bind=ctrl-r:toggle-sort --highlight-line $FZF_CTRL_R_OPTS" \
-      '--accept-nth=2.. --read0 --print0 --with-shell='(status fish-path)\\ -c)
+'--nth=2..,.. --scheme=history --multi --wrap-sign="\t↳ "' \
+'--bind=\'shift-delete:execute-silent(eval history delete --exact --case-sensitive -- (string escape -n -- {+} | string replace -r -a "^\d*\\\\\\t|(?<=\\\\\\n)\\\\\\t" ""))+reload(eval $FZF_DEFAULT_COMMAND)\'' \
+"--bind=ctrl-r:toggle-sort --highlight-line $FZF_CTRL_R_OPTS" \
+'--accept-nth=2.. --read0 --print0 --with-shell='(status fish-path)\\ -c)
 
         set -lx FZF_DEFAULT_OPTS_FILE
         set -lx FZF_DEFAULT_COMMAND
@@ -241,8 +252,8 @@ function fzf_key_bindings
         set -l prefix $commandline[3]
 
         set -lx FZF_DEFAULT_OPTS (__fzf_defaults \
-      "--reverse --walker=dir,follow,hidden --scheme=path" \
-      "$FZF_ALT_C_OPTS --no-multi --print0")
+"--reverse --walker=dir,follow,hidden --scheme=path" \
+"$FZF_ALT_C_OPTS --no-multi --print0")
 
         set -lx FZF_DEFAULT_OPTS_FILE
         set -lx FZF_DEFAULT_COMMAND "$FZF_ALT_C_COMMAND"
@@ -275,4 +286,39 @@ fzf_key_bindings
 ### zoxide
 zoxide init fish | source
 
-set -U fish_color_command red
+set -U fish_color_command green
+
+set -g fish_color_error "#1435EB" --bold
+
+# Argumentos u opciones de comandos (ej. '-l', '-a', '/ruta') - Verde lima
+set -g fish_color_param "#dddddd"
+
+# Texto dentro de comillas (strings) - Amarillo
+set -g fish_color_quote "#F6D609"
+
+# Redirecciones (ej. '>', '>>', '|') - Naranja
+set -g fish_color_redirection "#35F8B4"
+
+# Palabras clave (ej. 'if', 'function') - Magenta y subrayado
+set -g fish_color_keyword "#FF00FF" --underline
+
+# Comentarios (Texto que empieza con '#') - Gris claro e itálica
+set -g fish_color_comment "#AAAAAA" --italics
+
+# El texto de sugerencia que aparece en gris después de tu cursor
+set -g fish_color_autosuggestion "#555555"
+
+# El color del directorio actual (Current Working Directory)
+set -g fish_color_cwd "#00CCFF"
+
+# El color para el directorio raíz (cuando estás como root) - Rojo oscuro
+set -g fish_color_cwd_root "#800000"
+
+# El color para el usuario (si lo usas en el prompt)
+set -g fish_color_user "#FF8C00"
+
+# El color para el host/servidor (si lo usas en el prompt)
+set -g fish_color_host "#33CC33"
+
+# Color del texto por defecto (que no es comando, argumento, etc.)
+set -g fish_color_normal white
