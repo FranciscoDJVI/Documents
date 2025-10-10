@@ -10,7 +10,7 @@ set -g theme_hide_hostname no
 set -g theme_hostname always
 
 # aliases
-alias l="eza --color=always --long --git --no-filesize --icons=always --no-time --no-user --no-permissions"
+alias l="eza --color --long --git --no-filesize --icons=always --no-user"
 alias ll "ls -l"
 alias lla "ll -A"
 alias g git
@@ -45,7 +45,7 @@ set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
 if set -q VIRTUAL_ENV
-    set_color yellow
+    set_color green
     echo -n " ("(basename "$VIRTUAL_ENV")")"
 end
 
@@ -288,10 +288,10 @@ zoxide init fish | source
 
 set -U fish_color_command green
 
-set -g fish_color_error "#1435EB" --bold
+set -g fish_color_error "#1435EB"
 
 # Argumentos u opciones de comandos (ej. '-l', '-a', '/ruta') - Verde lima
-set -g fish_color_param "#dddddd"
+set -g fish_color_param "#35F8B4"
 
 # Texto dentro de comillas (strings) - Amarillo
 set -g fish_color_quote "#F6D609"
@@ -300,13 +300,13 @@ set -g fish_color_quote "#F6D609"
 set -g fish_color_redirection "#35F8B4"
 
 # Palabras clave (ej. 'if', 'function') - Magenta y subrayado
-set -g fish_color_keyword "#FF00FF" --underline
+set -g fish_color_keyword "#FF00FF"
 
 # Comentarios (Texto que empieza con '#') - Gris claro e itálica
-set -g fish_color_comment "#AAAAAA" --italics
+set -g fish_color_comment "#AAAAAA"
 
 # El texto de sugerencia que aparece en gris después de tu cursor
-set -g fish_color_autosuggestion "#555555"
+set -g fish_color_autosuggestion "#35F8B4"
 
 # El color del directorio actual (Current Working Directory)
 set -g fish_color_cwd "#00CCFF"
@@ -321,4 +321,6 @@ set -g fish_color_user "#FF8C00"
 set -g fish_color_host "#33CC33"
 
 # Color del texto por defecto (que no es comando, argumento, etc.)
-set -g fish_color_normal white
+set -g fish_color_normal #35F8B4
+
+set -g GREP_COLOR '01;36'
