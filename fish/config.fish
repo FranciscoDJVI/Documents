@@ -17,6 +17,7 @@ alias g git
 alias c claude
 alias lz lazygit
 alias sdu "sudo dnf update"
+alias gm gemini
 command -qv nvim && alias vim nvim
 
 function g
@@ -33,6 +34,10 @@ function g
 end
 set -gx EDITOR nvim
 
+# Fish colors
+set -g fish_color_command "#4ecdc4"
+set -g fish_color_normal cyan
+
 set -gx PATH bin $PATH
 set -gx PATH ~/bin $PATH
 set -gx PATH ~/.local/bin $PATH
@@ -44,10 +49,6 @@ set -gx PATH node_modules/.bin $PATH
 set -g GOPATH $HOME/go
 set -gx PATH $GOPATH/bin $PATH
 
-if set -q VIRTUAL_ENV
-    set_color green
-    echo -n " ("(basename "$VIRTUAL_ENV")")"
-end
 
 switch (uname)
     case Darwin
@@ -65,7 +66,7 @@ end
 set -g fish_user_paths /usr/local/bin $fish_user_paths
 set -g fish_user_paths /usr/local/sbin $fish_user_paths
 eval (oh-my-posh init fish)
-eval "$(oh-my-posh init fish --config ~/fran-dev.omp.json | source)"
+eval "$(oh-my-posh init fish --config ~/.config/fish/ohmyposh/fran-dev.omp.json | source)"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 # fxf config
@@ -286,41 +287,9 @@ fzf_key_bindings
 ### zoxide
 zoxide init fish | source
 
-set -U fish_color_command green
 
-set -g fish_color_error "#1435EB"
 
-# Argumentos u opciones de comandos (ej. '-l', '-a', '/ruta') - Verde lima
-set -g fish_color_param "#35F8B4"
 
-# Texto dentro de comillas (strings) - Amarillo
-set -g fish_color_quote "#F6D609"
-
-# Redirecciones (ej. '>', '>>', '|') - Naranja
-set -g fish_color_redirection "#35F8B4"
-
-# Palabras clave (ej. 'if', 'function') - Magenta y subrayado
-set -g fish_color_keyword "#FF00FF"
-
-# Comentarios (Texto que empieza con '#') - Gris claro e itálica
-set -g fish_color_comment "#AAAAAA"
-
-# El texto de sugerencia que aparece en gris después de tu cursor
-set -g fish_color_autosuggestion "#35F8B4"
-
-# El color del directorio actual (Current Working Directory)
-set -g fish_color_cwd "#00CCFF"
-
-# El color para el directorio raíz (cuando estás como root) - Rojo oscuro
-set -g fish_color_cwd_root "#800000"
-
-# El color para el usuario (si lo usas en el prompt)
-set -g fish_color_user "#FF8C00"
-
-# El color para el host/servidor (si lo usas en el prompt)
-set -g fish_color_host "#33CC33"
-
-# Color del texto por defecto (que no es comando, argumento, etc.)
-set -g fish_color_normal #35F8B4
-
-set -g GREP_COLOR '01;36'
+# bun
+set --export BUN_INSTALL "$HOME/.local/share/reflex/bun"
+set --export PATH $BUN_INSTALL/bin $PATH

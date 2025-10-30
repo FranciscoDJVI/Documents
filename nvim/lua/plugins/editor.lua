@@ -80,7 +80,8 @@ return {
             additional_args = { "--hidden" },
           })
         end,
-        desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
+        desc =
+        "Search for a string in your current working directory and get results live as you type, respects .gitignore",
       },
       {
         "\\\\",
@@ -189,7 +190,7 @@ return {
               ["N"] = fb_actions.create,
               ["h"] = fb_actions.goto_parent_dir,
               ["/"] = function()
-                vim.cmd("startinsert")
+                vim.api("startinsert")
               end,
               ["<C-u>"] = function(prompt_bufnr)
                 for i = 1, 10 do

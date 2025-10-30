@@ -10,20 +10,14 @@ return {
         opts = { skip = true },
       })
       opts.presets.lsp_doc_border = true
-    end,
-  },
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      timeout = 5000,
-    },
+    end
   },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "solarized_dark",
+        theme = "auto",
       },
     },
   },
@@ -62,7 +56,7 @@ return {
   {
     "akinsho/bufferline.nvim",
     keys = {
-      { "<Tab>", "<Cmd>bufferlineCycleNext<CR>", desc = "New tab" },
+      { "<Tab>",   "<Cmd>bufferlineCycleNext<CR>", desc = "New tab" },
       { "<S-Tab>", "<Cmd>bufferlineCyclePrev<CR>", desc = "Prev tab" },
     },
     opts = {
@@ -79,7 +73,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "yorumi",
+        theme = "auto",
       },
     },
   },
@@ -122,11 +116,11 @@ return {
         },
         preset = {
           header = [[
- / _|_ __ __ _ _ __         __| | _____   __
-| |_| '__/ _` | '_ \ _____ / _` |/ _ \ \ / /
-|  _| | | (_| | | | |_____| (_| |  __/\ V / 
-|_| |_|  \__,_|_| |_|      \__,_|\___| \_/  
-]],
+          / _|_ __ __ _ _ __         __| | _____   __
+          | |_| '__/ _` | '_ \ _____ / _` |/ _ \ \ / /
+          |  _| | | (_| | | | |_____| (_| |  __/\ V /
+          |_| |_|  \__,_|_| |_|      \__,_|\___| \_/
+        ]],
         },
       },
     },
